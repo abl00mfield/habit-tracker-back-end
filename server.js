@@ -10,6 +10,8 @@ const logger = require("morgan");
 // Import routers
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
+const habitRoutes = require("./routes/habitRoutes");
+const habit = require("./models/habit");
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -26,6 +28,7 @@ app.use(logger("dev"));
 // Routes
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/habits", habitRoutes);
 
 // Start the server and listen on port 3000
 app.listen(3000, () => {
