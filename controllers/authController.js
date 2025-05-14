@@ -1,13 +1,10 @@
-const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/user");
 
 const saltRounds = 12;
 
-router.post("/sign-up", async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -37,9 +34,9 @@ router.post("/sign-up", async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-});
+};
 
-router.post("/sign-in", async (req, res) => {
+const signIn = async (req, res) => {
   try {
     //user can enter either username or email to sign in
     const user = await User.findOne({
@@ -66,6 +63,6 @@ router.post("/sign-in", async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-});
+};
 
-module.exports = router;
+module.exports = { signUp, signIn };
