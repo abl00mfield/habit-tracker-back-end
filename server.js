@@ -11,7 +11,7 @@ const logger = require("morgan");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const habitRoutes = require("./routes/habitRoutes");
-const habit = require("./models/habit");
+// const habit = require("./models/habit");
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI);
@@ -30,7 +30,8 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/habits", habitRoutes);
 
+const PORT = process.env.PORT || 3000;
 // Start the server and listen on port 3000
-app.listen(3000, () => {
-  console.log("The express app is ready!");
+app.listen(PORT, () => {
+  console.log(`The express app is ready! on port ${PORT}`);
 });
