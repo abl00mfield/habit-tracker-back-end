@@ -14,6 +14,7 @@ const habitSchema = new mongoose.Schema(
     dailyGoal: { type: Number, default: 1 },
     history: [
       {
+        _id: false,
         date: { type: String },
         checkIns: [{ type: Date }], //Timestamps of check-ins
       },
